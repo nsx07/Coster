@@ -1,95 +1,75 @@
-<div class='w-screen h-screen flex justify-center items-center'>
-  <div class='w-full max-w-5xl px-6 flex flex-col gap-16'>
+<div class='w-screen h-screen flex justify-content-center align-items-center'>
+  <div class='w-50rem max-w-3xl px-6 flex'>
     <div [formGroup]="formCoster">
-
-      <div class="overflow-hidden w-full shadow sm:rounded-md gap-y-2">
-        <div class="bg-gray-700 px-4 py-5 sm:p-6">
-            <div class="flex justify-center p-5">
-                <h3 class="text-lg font-medium leading-6">Coster</h3>
+      <div class="border-round-md bg-gray-600 shadow-3 sm:rounded-md gap-y-2">
+        <div class="card p-3">
+          <div class="text-center p-2">
+            <span class="text-2xl font-medium">Coster</span>
+          </div>
+          <div class="formgrid grid">
+              <div class="field col-12 md:col-6">
+                <label for="costRoll" class=""> Custo Rolo </label>
+                <input type="number" formControlName="costRoll" id="costRoll" class="shadow-3 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+              </div>
+              <div class="field col-12 md:col-6">
+                <label for="units" class=""> Unidades </label>
+                <input type="number" formControlName="units" id="units" class="shadow-3 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+              </div>
+              <div class="field col-12 md:col-6">
+                <label for="yeald" class=""> Rendimento em M</label>
+                <input type="number" formControlName="yeald" id="yeald" class="shadow-3 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"/>
+              </div>
+              <div class="field col-12 md:col-6">
+                <label for="yealdPeerKg" class=""> Rendimento por KG</label>
+                <input type="number" formControlName="yealdPeerKg" id="yealdPeerKg" class="shadow-3 text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+              </div>
             </div>
-            <div class="grid grid-cols-6 gap-5">
-              <div class="col-span-6 sm:col-span-3">
-                <label for="costRoll" class="block text-sm font-medium"> Custo Rolo </label>
-                <input type="number" formControlName="costRoll" id="costRoll"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-black focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="units" class="block text-sm font-medium"> Unidades </label>
-                <input type="number" formControlName="units" id="units"
-                  class="mt-1 block w-full rounded-md text-black border shadow-sm"/>
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="yeald" class="block text-sm font-medium"> Rendimento em M</label>
-                <input type="number" formControlName="yeald" id="yeald"
-                  class="mt-1 block w-full rounded-md text-black border shadow-sm"/>
-              </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="yealdPeerKg" class="block text-sm font-medium"> Rendimento por KG</label>
-                <input type="number" formControlName="yealdPeerKg" id="yealdPeerKg"
-                  class="mt-1 block w-full rounded-md text-black border shadow-sm"/>
-              </div>
-              <ng-container *ngTemplateOutlet="nField"></ng-container>
+            <ng-container *ngTemplateOutlet="nField"></ng-container>
+        </div>
+          <!-- footer -->
+          <div class="bg-gray-700 border-round-bottom-md flex justify-content-between p-3">
+            <div class="flex align-items-center">
+              <span class="text-base">Preço recomendado : {{result}}</span>
+            </div>
+            <div class="flex justify-center card column-gap-2">
+                <button pButton class="p-button p-button-danger" (click)="formCoster.reset()">Cancelar</button>
+                <button pButton class="p-button p-button-success" [disabled]="!formCoster.valid" (click)="calculate()">Calcular</button>
             </div>
           </div>
-          <div class="bg-gray-600 flex justify-between px-4 py-3 text-right sm:px-6">
-            <div>
-              <span class="text-sm font-medium text-white shadow-sm">Preço recomendado : {{result}}</span>
-            </div>
-
-            <div class="flex justify-center card">
-              <button type="submit" (click)="formCoster.reset()"
-                class="inline-flex justify-center rounded-md border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-slate-900">
-                Cancelar
-              </button>
-              <button type="submit" [disabled]="!formCoster.valid" (click)="calculate()"
-                class="inline-flex justify-center rounded-md border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-slate-900">
-                Calcular
-              </button>
-            </div>
-          </div>
+          <!-- footer -->
       </div>
-
     </div>
   </div>
 </div>
 
 <ng-template #nField>
-  <div class="flex justify-start items-center w-max">
-    <button id="newField" (click)="addField()"
-      class="inline-flex justify-center rounded-full border-transparent p-2 m-2 text-sm font-medium text-white shadow-sm hover:bg-slate-900 hover:transition-transform hover:rotate-90">
-      <i class="fa-solid fa-plus"></i>
-    </button>
-    <label for="newField" class="block text-sm font-medium cursor-pointer">
-        Adicionar novo campo
-    </label>
+  <div class="flex justify-content-start align-items-center mb-2">
+    <button id="newField" (click)="addField()" class="mr-2 p-button p-button-rounded" pButton icon="pi pi-plus" label="Adicionar novo campo"></button>
   </div>
 
-  <div *ngFor="let item of addValues" class="col-span-12 items-center flex sm:col-span-6 justify-between">
 
-    <div class="flex justify-start items-center">
-      <button id={{item.id}} (click)="removeField(item)"
-        class="inline-flex justify-center rounded-full border-transparent p-2 m-2 text-sm font-medium text-white shadow-sm hover:bg-slate-900 hover:transition-transform hover:rotate-180">
-        <i class="fa-solid fa-minus"></i>
-      </button>
-      <label for={{item.id}} class="block text-sm font-medium cursor-pointer">
-          Remover campo
-      </label>
+  <div *ngFor="let item of addValues" class="grid p-fluid">
+    <div class="col-3 md:col-3">
+      <div class="flex justify-content-start align-items-center w-max">
+        <button id={{item.id}} (click)="removeField(item)" pButton icon="pi pi-minus" class="mr-2 p-button p-button-rounded" label="Remover campo"></button>
+      </div>
     </div>
 
-    <div class="p-fluid flex" *ngIf="item.name">
-      <div class="col-12 md:col-4">
+      <div class="col-3 md:col-3" *ngIf="item.name">
         <input [(ngModel)]="item.name" type="text" pInputText placeholder="Nome">
       </div>
 
-      <div #self class="col-12 md:col-4">
+      <div #self class="col-3 md:col-3" *ngIf="item.name">
         <p-dropdown appendTo="self" [(ngModel)]="item.typeOperation" [options]="operations" optionValue="code"></p-dropdown>
       </div>
 
-      <div class="col-12 md:col-4">
+      <div class="col-3 md:col-3" *ngIf="item.name">
         <p-inputNumber [(ngModel)]="item.cost" placeholder="Valor" [maxFractionDigits]="2"></p-inputNumber>
       </div>
-    </div>
 
   </div>
 </ng-template>
+
+
+
 

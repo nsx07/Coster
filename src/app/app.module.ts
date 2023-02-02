@@ -7,7 +7,7 @@ import { InputNumberModule} from "primeng/inputnumber";
 import { DropdownModule } from "primeng/dropdown";
 import { AppComponent } from './app.component';
 import {SelectButtonModule} from "primeng/selectbutton";
-import {ScrollerModule} from 'primeng/scroller';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,9 @@ import {ScrollerModule} from 'primeng/scroller';
   ],
   imports: [
     FormsModule,
+    ButtonModule,
     BrowserModule,
     DropdownModule,
-    ScrollerModule,
     InputTextModule,
     InputNumberModule,
     SelectButtonModule,

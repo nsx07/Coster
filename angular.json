@@ -10,7 +10,7 @@
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "./",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
@@ -32,8 +32,9 @@
             "styles": [
              "src/styles.scss",
              "node_modules/primeicons/primeicons.css",
-             "node_modules/primeng/resources/themes/mdc-light-deeppurple/theme.css",
-             "node_modules/primeng/resources/primeng.min.css"
+             "node_modules/primeflex/primeflex.min.css",
+             "node_modules/primeng/resources/primeng.min.css",
+             "node_modules/primeng/resources/themes/mdc-light-deeppurple/theme.css"
             ],
             "scripts": [
             ]
@@ -101,6 +102,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
