@@ -7,6 +7,7 @@ import { InputNumberModule} from "primeng/inputnumber";
 import { DropdownModule } from "primeng/dropdown";
 import { AppComponent } from './app.component';
 import {SelectButtonModule} from "primeng/selectbutton";
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
     BrowserModule,
     DropdownModule,
     InputTextModule,
+    ScrollPanelModule,
     InputNumberModule,
     SelectButtonModule,
     ReactiveFormsModule,

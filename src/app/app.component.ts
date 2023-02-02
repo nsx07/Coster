@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   formCoster! : FormGroup
   result : string = ""
 
+
   operations = [
     {label : "Divisão" , code : OPERATIONS.DIVISION},
     {label : "Menos" , code : OPERATIONS.MINUS},
@@ -30,10 +31,10 @@ export class AppComponent implements OnInit {
 
   setForm() {
     this.formCoster = this.formBuilder.group({
-      yealdPeerKg : ["", Validators.required],
-      costRoll : ["", Validators.required],
-      units : ["", Validators.required],
-      yeald : ["", Validators.required],
+      yealdPeerKg : ["", Validators.compose([Validators.required, Validators.min(1)])],
+      costRoll : ["", Validators.compose([Validators.required, Validators.min(1)])],
+      units : ["", Validators.compose([Validators.required, Validators.min(1)])],
+      yeald : ["", Validators.compose([Validators.required, Validators.min(1)])],
     })
   }
 
