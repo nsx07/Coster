@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   addField() {
-    let field = {id: this.addValues.length, name: "Nome", cost: 0, typeOperation : OPERATIONS.PLUS}
+    let field = {id: this.addValues.length, name: "", cost: 0, typeOperation : OPERATIONS.PLUS}
     this.addValues.push(field)
   }
 

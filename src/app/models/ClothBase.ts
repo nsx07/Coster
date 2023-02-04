@@ -32,7 +32,6 @@ export class ClothBase {
       return this
   }
 
-
   private initValues()  {
       this.cloth.pricePeerMeter = this.cloth.costRoll / this.cloth.yealdPeerKg;
       this.cloth.basePrice = this.cloth.pricePeerMeter * this.cloth.yeald / this.cloth.units;
@@ -41,24 +40,28 @@ export class ClothBase {
 
   calculatePrice(addValues : Array<AdditionalValues>) {
       this.cloth.additionalValues = [];
-      addValues.forEach((addValues, index) => {
-          let value = this.cloth.basePrice ? this.cloth.basePrice : 0
-          switch (addValues.typeOperation) {
-              case OPERATIONS.PLUS :
-                  value += addValues.cost;
-                  break
-              case OPERATIONS.MINUS :
-                  value -= addValues.cost;
-                  break
-              case OPERATIONS.TIMES :
-                  value *= addValues.cost;
-                  break
-              case OPERATIONS.DIVISION :
-                  value /= addValues.cost;
-                  break
-          }
-          this.cloth.basePrice = value
-          this.cloth.additionalValues?.push(addValues.cost)
+      addValues.forEach((addValues) => {
+        let value = this.cloth.basePrice ? this.cloth.basePrice : 0
+        if (!addValues.cost) {
+          return false;
+        }
+        switch (addValues.typeOperation) {
+          case OPERATIONS.PLUS :
+              value += addValues.cost;
+              break
+          case OPERATIONS.MINUS :
+              value -= addValues.cost;
+              break
+          case OPERATIONS.TIMES :
+              value *= addValues.cost;
+              break
+          case OPERATIONS.DIVISION :
+              value /= addValues.cost;
+              break
+        }
+        this.cloth.basePrice = value
+        this.cloth.additionalValues?.push(addValues.cost)
+        return this.cloth.basePrice;
       })
       return this
   }
