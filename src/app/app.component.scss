@@ -1,0 +1,12 @@
+.animate :hover {
+  animation: turndown 2s linear;
+
+  @keyframes turndown {
+    from {
+      transform: rotate(90deg);
+    }
+    to {
+      transform: rotate(-90deg);
+    }
+  }
+}

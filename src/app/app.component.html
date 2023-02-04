@@ -44,13 +44,14 @@
 
 <ng-template #nField>
   <div class="flex justify-content-start align-items-center mb-2">
-    <button id="newField" (click)="addField()" class="mr-2 p-button p-button-rounded" pButton icon="pi pi-plus" label="Adicionar novo campo"></button>
+    <button id="newField" (click)="addField()" class="mr-2 p-button p-button-secondary p-button-rounded" pButton icon="pi pi-plus" label="Adicionar novo campo"></button>
+    <!-- transition-colors  hover:bg-yellow-500 text-white hover:text-gray-900 -->
   </div>
 
   <p-scrollPanel *ngIf="addValues.length" [style]="{height : '200px'}">
     <div *ngFor="let item of addValues" class="flex flex-column justify-content-between md:flex-row px-4">
         <div class="justify-content-start align-items-center my-2">
-          <button id={{item.id}} (click)="removeField(item)" pButton icon="pi pi-minus" class="p-button p-button-rounded" label="Remover"></button>
+          <button id={{item.id}} (click)="removeField(item)" pButton icon="pi pi-minus" class="p-button p-button-danger p-button-rounded fadein" label="Remover"></button>
         </div>
         <div class="justify-content-end" *ngIf="item.typeOperation">
           <input [(ngModel)]="item.name" type="text" pInputText placeholder="Nome">
